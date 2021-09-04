@@ -38,75 +38,77 @@ namespace Cinema
 
             DataContext = this;
             InitializeComponent();
-            //Calendar cal = new Calendar();
-            //CalendarLabel.SetBinding(ComboBox.ItemsSourceProperty, new Binding()
-            //{ Source = Enum.GetValues(typeof(Days)) });
-            //CalendarLabel.SetBinding(ComboBox.SelectedValueProperty, new Binding("CurrentDay")
-
-            //{ Source = cal });
             SetFirst();
-
-
-        }
-
-        private async void SetFirst() 
-        {
-            var name = "X-Men: Apocalypse";
-            HttpResponseMessage response = new HttpResponseMessage();
-            response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&s={name}&plot=full").Result;
-            var str = response.Content.ReadAsStringAsync().Result;
-
-            Data = JsonConvert.DeserializeObject(str);
-            response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&t={Data.Search[0].Title}&plot=full").Result;
-
-            str = response.Content.ReadAsStringAsync().Result;
-
-            SingleData = JsonConvert.DeserializeObject(str);
-            movieNameLabel.Content = SingleData.Title;
-            MovieImage.Source = SingleData.Poster;
-            MovieImage2.Source = SingleData.Poster;
-            Minute = SingleData.Runtime;
-            Description = SingleData.Genre;
-            movieDescriptionLabel.Content = SingleData.Genre;
-            movieCountryLabel.Content = SingleData.Country;
-            movieRuntimeLabel.Content = SingleData.Runtime;
-            movieReleasedLabel.Content = SingleData.Released;
-            movieImdbLabel.Content = SingleData.imdbRating + " /";
+            CalendarLabel.BlackoutDates.Add(new CalendarDateRange(new DateTime(1, 1, 1),
+             DateTime.Now.AddDays(-1)));
 
         }
 
-        private async void Search_MouseDoubleClick(object sender, RoutedEventArgs e)
-        {
-          
-            var name = MovieTextBox.Text;
-            HttpResponseMessage response = new HttpResponseMessage();
-            response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&s={name}&plot=full").Result;
-            var str = response.Content.ReadAsStringAsync().Result;
+        
 
-            Data = JsonConvert.DeserializeObject(str);
-            response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&t={Data.Search[0].Title}&plot=full").Result;
+private async void SetFirst()
+{
+    var name = "X-Men: Apocalypse";
+    HttpResponseMessage response = new HttpResponseMessage();
+    response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&s={name}&plot=full").Result;
+    var str = response.Content.ReadAsStringAsync().Result;
 
-            str = response.Content.ReadAsStringAsync().Result;
+    Data = JsonConvert.DeserializeObject(str);
+    response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&t={Data.Search[0].Title}&plot=full").Result;
 
-            SingleData = JsonConvert.DeserializeObject(str);
-            MovieImage.Source = SingleData.Poster;
-            MovieImage2.Source = SingleData.Poster;
-            movieDescriptionLabel.Content = SingleData.Genre; 
-            movieCountryLabel.Content = SingleData.Country;
-            Minute = SingleData.Runtime;
-            //movieLabel.Content = Minute + "  " + Description;
-            //Nextbtn.Visibility = Visibility.Visible;
-            //nextbor.Visibility = Visibility.Visible;
+    str = response.Content.ReadAsStringAsync().Result;
 
-            //var keyword = String.Format("{0} {1} trailer", SingleData.Title, SingleData.Year);
-            //await Search(keyword);
-            //LoadTrailer();
-        }
+    SingleData = JsonConvert.DeserializeObject(str);
+    movieNameLabel.Content = SingleData.Title;
+    MovieImage.Source = SingleData.Poster;
+    MovieImage2.Source = SingleData.Poster;
+    Minute = SingleData.Runtime;
+    Description = SingleData.Genre;
+    movieDescriptionLabel.Content = SingleData.Genre;
+    movieCountryLabel.Content = SingleData.Country;
+    movieRuntimeLabel.Content = SingleData.Runtime;
+    movieReleasedLabel.Content = SingleData.Released;
+    movieImdbLabel.Content = SingleData.imdbRating + " /";
+    PlotText.Text = SingleData.Plot;
+    Writers.Content = SingleData.Writer;
+    DirectorLabel.Content = SingleData.Director;
 
-        private void Search_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MovieTextBox.Visibility = Visibility.Visible;
-            BorderSearch.Visibility = Visibility.Visible;
-        }
+                
+
+}
+
+private async void Search_MouseDoubleClick(object sender, RoutedEventArgs e)
+{
+
+    var name = MovieTextBox.Text;
+    HttpResponseMessage response = new HttpResponseMessage();
+    response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&s={name}&plot=full").Result;
+    var str = response.Content.ReadAsStringAsync().Result;
+
+    Data = JsonConvert.DeserializeObject(str);
+    response = httpClient.GetAsync($@"http://www.omdbapi.com/?apikey=bdba957b&t={Data.Search[0].Title}&plot=full").Result;
+
+    str = response.Content.ReadAsStringAsync().Result;
+
+    SingleData = JsonConvert.DeserializeObject(str);
+    MovieImage.Source = SingleData.Poster;
+    MovieImage2.Source = SingleData.Poster;
+    movieDescriptionLabel.Content = SingleData.Genre;
+    movieCountryLabel.Content = SingleData.Country;
+    Minute = SingleData.Runtime;
+    //movieLabel.Content = Minute + "  " + Description;
+    //Nextbtn.Visibility = Visibility.Visible;
+    //nextbor.Visibility = Visibility.Visible;
+
+    //var keyword = String.Format("{0} {1} trailer", SingleData.Title, SingleData.Year);
+    //await Search(keyword);
+    //LoadTrailer();
+}
+
+private void Search_MouseDown(object sender, MouseButtonEventArgs e)
+{
+    MovieTextBox.Visibility = Visibility.Visible;
+    BorderSearch.Visibility = Visibility.Visible;
+}
     }
 }
