@@ -27,6 +27,8 @@ namespace Cinema
 
         public string Genre { get; set; }
         public string Plot { get; set; }
+        public List<CheckBoxx> Seats { get; set; } = new List<CheckBoxx>();
+
     }
 
 }

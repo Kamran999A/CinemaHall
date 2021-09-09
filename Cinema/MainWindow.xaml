@@ -20,7 +20,6 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <Grid>
-
                             <Ellipse x:Name="outerEllipse">
                                 <Ellipse.Fill>
                                     <SolidColorBrush  Color="LightGray"/>
@@ -33,18 +32,24 @@
                             </Ellipse>
                             <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
+
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="highlightCircle" Property="Fill">
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="outerEllipse" Property="Fill">
                                     <Setter.Value>
-                                        <SolidColorBrush  Color="Red"/>
+                                        <SolidColorBrush  Color="Green"/>
+
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
+
+
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="highlightCircle" Property="Fill">
+                                <Setter TargetName="outerEllipse" Property="Fill">
                                     <Setter.Value>
-                                        <SolidColorBrush  Color="Green"/>
+                                        <SolidColorBrush  Color="Red"/>
+
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="IsEnabled" Value="False" />
@@ -54,13 +59,9 @@
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-                            <Trigger Property="IsChecked" Value="False">
-                                <Setter TargetName="highlightCircle" Property="Fill">
-                                    <Setter.Value>
-                                        <SolidColorBrush  Color="Green"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
+
+
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -259,8 +260,8 @@
 
         </Grid>
         <Grid Grid.Row="2" >
-            <Canvas>
-                <Label  Content="A" Canvas.Left="43" Canvas.Top="15" Width="22" />
+            <Canvas x:Name="Canvas">
+                <!--<Label  Content="A" Canvas.Left="43" Canvas.Top="15" Width="22" />
                 <Label  Content="B" Canvas.Left="72" Canvas.Top="14" Width="20" />
                 <Label  Content="C" Canvas.Left="111" Canvas.Top="14" Width="21" />
                 <Label  Content="D" Canvas.Left="156" Canvas.Top="14" Width="22" />
@@ -278,94 +279,98 @@
                 <Label  Content="4" Canvas.Left="10" Canvas.Top="109" Width="20" />
                 <Label  Content="3" Canvas.Left="10" Canvas.Top="135" Width="20" />
                 <Label  Content="2" Canvas.Left="10" Canvas.Top="161" Width="20" />
-                <Label  Content="1" Canvas.Left="10" Canvas.Top="187" Width="20" />
+                <Label  Content="1" Canvas.Left="10" Canvas.Top="187" Width="20" />-->
 
 
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="{x:Null}" Name="A7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="43"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="67"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="90"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"    Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="114"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="140"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="166"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True" Name="B7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0"  Name="A7"
+                          Style="{StaticResource CircleCheckbox}"  IsChecked="False" 
+                          Height="16" Width="16" Canvas.Left="43" Canvas.Top="43"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="A6"  IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="67"  />
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="A5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="90"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="A4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="114"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="A3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="140"/>
+                <CheckBox Grid.Row="3" Grid.Column="1" Name="A2" Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="43" Canvas.Top="166"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True" Name="C7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B7" IsChecked="False"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="B2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="71" Canvas.Top="165"/>
+
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="C1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="111" Canvas.Top="190"/>
 
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True" Name="D7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="D1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="155" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True" Name="E7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="E1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="194" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True" Name="F7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="F1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="232" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False" Name="G7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="G1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="276" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False" Name="H7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="H1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="319" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False" Name="I7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="165"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="190"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="I1" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="362" Canvas.Top="190"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False" Name="J7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="J2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="400" Canvas.Top="165"/>
 
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False" Name="K7"  Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="42"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="66"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="89"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="113"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="True"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="139"/>
-                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="165"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K7" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="42"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K6" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="66"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K5" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="89"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K4" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="113"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K3" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="139"/>
+                <CheckBox Grid.Row="3" Grid.Column="1"  Margin="0" Name="K2" IsChecked="False"   Style="{StaticResource CircleCheckbox}" Height="16" Width="16" Canvas.Left="429" Canvas.Top="165"/>
             </Canvas>
+
 
 
         </Grid>
@@ -378,7 +383,7 @@
                 <my:Label Name="PriceLabel" Foreground="#4fbba7" FontSize="16" FontWeight="UltraBlack" Canvas.Left="60"  Width="Auto" Canvas.Top="13" Padding="0" 
                           Content="5 SdasdvVAvdSD" Height="Auto" >
                 </my:Label>
-                <Button Canvas.Left="297" Content="CHECKOUT"  Background="#4fbba7" Canvas.Top="10" Width="149"  >
+                <Button Canvas.Left="297" Click="CheckOutclck" Content="CHECKOUT"  Background="#4fbba7" Canvas.Top="10" Width="149"  >
                     <Button.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding MessageCommand}" ></MouseBinding>
                     </Button.InputBindings>

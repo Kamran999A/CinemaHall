@@ -31,7 +31,7 @@ namespace Cinema
     public partial class MainWindow : Window
     {
 
-        public string ImagePath { get; set; }
+        public Movie movie { get; set; }
         public string Minute { get; set; }
         public string Description { get; set; }
         public dynamic Data { get; set; }
@@ -42,7 +42,7 @@ namespace Cinema
         Dictionary<string, bool> seats = new Dictionary<string, bool>();
 
 
-      
+        
 
         private int i = 0;
 
@@ -60,7 +60,7 @@ namespace Cinema
 
         public RelayCommand MessageCommand { get; set; }
         public RelayCommand SendCommand { get; set; }
-
+         
 
 
 
@@ -76,7 +76,6 @@ namespace Cinema
 
             SendCommand = new RelayCommand(Send);
 
-            seats = FileHelper.ReadJSON_Users();
             PrepareApi();
             _youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -85,6 +84,61 @@ namespace Cinema
                 
             });
             SetFirst();
+            if (File.Exists($"{movieNameLabel.Content.ToString().ToLower()}.json"))
+            {   
+                var movie2 = FileHelper.JsonDeserializeMovie($"{movieNameLabel.Content.ToString().ToLower().Trim()}");
+                List<CheckBoxx> seats = new List<CheckBoxx>();
+                int index = 0;
+                foreach (var item in Canvas.Children)
+                {
+                    var chbox = item as CheckBox;
+                    chbox.IsChecked = movie2.Seats[index].IsChecked;
+                    index++;
+                }
+            }
+        }
+
+        private void CheckOutclck(object sender, RoutedEventArgs e)
+        {
+            movieNameLabel.Content = movieNameLabel.Content.ToString().ToLower();
+            if (File.Exists(movieNameLabel.Content + ".json"))
+            {
+                var movie = FileHelper.JsonDeserializeMovie(movieNameLabel.Content.ToString().ToLower().Trim());
+                List<CheckBoxx> seats = new List<CheckBoxx>();
+                int index = 0;
+                foreach (var item in Canvas.Children)
+                {
+                    var border = item as CheckBox;
+
+                    border.IsChecked = movie.Seats[index].IsChecked;
+
+
+                    index++;
+                }
+            }
+            else
+            {
+
+                // CreatePDF()
+                #region WriteJson
+                List<CheckBoxx> seats = new List<CheckBoxx>();
+
+                foreach (var item in Canvas.Children)
+                {
+                    var chbox = item as CheckBox;
+                    CheckBoxx seat = new CheckBoxx(chbox.Name, chbox.IsChecked, 10);
+                    seats.Add(seat);
+                }
+
+                Movie movie = new Movie
+                {
+                    Name = movieNameLabel.Content.ToString().Trim(),
+                    Seats = seats
+                };
+                FileHelper.JsonSerializationMovie(movie);
+            }
+
+            #endregion
         }
 
 
