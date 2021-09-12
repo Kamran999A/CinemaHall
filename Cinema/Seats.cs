@@ -18,6 +18,7 @@ namespace Cinema
 
         public string Name { get; set; }
         public bool IsChecked { get; set; } = false;
+        public bool IsPressed { get; set; } = false;
         public double Price { get; set; }
     }
 }
